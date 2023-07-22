@@ -1,0 +1,220 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<!-------------------------------------------- { Header layout } --------------------------------------------------------------------------->
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5 img-fluid">
+       <div>
+           <a href="{% url 'index' %}"><img src="{% static 'img/favicon.png' %}" style="height: 50px;width:50px;" class="img-fluid"></a>
+       </div> 
+        <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav mx-auto py-0">
+                <a href="{% url 'index' %}" class="nav-item nav-link active">Home</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link">Dashboard</a>
+                
+                
+            </div>
+            {% if  user.is_authenticated %}
+            <a href="{% url 'signout' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Log out</a>
+            {% else %}
+            <a href="{% url 'signin' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Log In</a>
+            <a href="{% url 'register' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" >
+        <div class="container text-center my-5 py-5">
+            <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+              <img src="{% static 'img/snowpark-home-slider-logo-new.png' %}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Courses Start -->
+    <div class="container-fluid">
+        <div class="row mx-0 justify-content-center pt-5">
+            <div class="col-lg-6">
+                <div class="section-title text-center position-relative mb-4">
+                    <h2 class="d-inline-block position-relative text-primary text-uppercase pb-2">Courses</h2>
+                
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel courses-carousel">
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Full stack development courses</h4>
+                    <div class="border-top w-100 mt-3">
+                        
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Full stack intermediate internship program</h4>
+                    <div class="border-top w-100 mt-3">
+                        
+
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">ASP.NET core</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-4.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Full stack flutter development</h4>
+                    <div class="border-top w-100 mt-3">
+                        
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-5.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Cloud computing AWS</h4>
+                    <div class="border-top w-100 mt-3">
+                        
+
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-6.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Cloud computing AZURE</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-7.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Full stack development in PHP</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-8.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Internship at software testing</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-9.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Network & Service Administration</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-10.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Full stack development in JAVA</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-11.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Digital marketing internship</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-12.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">Full stack development in Python</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="courses-item position-relative">
+                <img class="img-fluid" src="{% static 'img/courses-13.jpg' %}" alt="">
+                <div class="courses-text">
+                    <h4 class="text-center text-white px-3">MERN/MEAN stack development</h4>
+                    <div class="border-top w-100 mt-3">
+                       
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+<!------------------------------------------------ course end -------------------------------------------------------------------->
+        
+        </div>
+    </div>
+    <!-- call end -->
+
+    <!-- about Start -->
+    <div class="container-fluid bg-image py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg mb-5 mb-lg-0">
+                    <div class="section-title position-relative mb-4">
+                        <h3 class="text-center position-relative text-primary text-uppercase pb-2">SCOPE INDIA, your career partner!</h3>
+                        <h5 class="text-center">One of the best Training Destination for Software, Networking and Cloud Computing courses in India</h5>
+                    </div>
+                    <p class="m-0 text-center">Software, Networking, and Cloud Professional Education Centre in Kerala from Suffix E Solutions with WORKING PROFESSIONALS oriented on-the-job TRAINING model. SCOPE INDIA provides courses for Software Programming in Python (Data Science | Artificial Intelligence | Machine Learning | Deep Learning), Java, PHP, .Net, Software Testing Manual and Automation, Cloud in AWS, Azure, Server Administration in MCSE, and RHCE, CCNA, Mobile App Development in Flutter, and, Digital Marketing. Training with 100% Trusted Job Based Internship Model. SCOPE INDIA has a Strong Placement Cell that provides jobs to 1000's of students every year. We assure you, you won't regret it after training from SCOPE INDIA!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about Start -->
+
+
+
+{% endblock %}

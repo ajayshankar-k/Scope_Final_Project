@@ -1,0 +1,117 @@
+{% extends 'dashboard_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav" style="background-color: rgb(4, 99, 215);">
+            <div class="quixnav-scroll" style="color: white;">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Student Dashboard</li>
+                    <li  class="side_nav active"><a href="{% url 'dashboard' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-book"></i><span style="color: white;" class="nav-text">Available Courses</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'course_signup' %}"    style="background-color: rgb(4, 99, 215);"  aria-expanded="false"><i style="color: white;"
+                                class="bi bi-bookmark-check"></i><span style="color: white;" class="nav-text">Courses Signed Up</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'profile' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-person"></i><span style="color: white;" class="nav-text">Profile</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'signout' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="icon-key"></i><span style="color: white;" class="nav-text">Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="card">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Total Students</div>
+                                    <div class="stat-digit">{{student_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="card">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Courses Available</div>
+                                    <div class="stat-digit">{{course_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="card">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Courses You've Enrolled</div>
+                                    <div class="stat-digit">{{enroll_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- /# column -->
+                </div>
+                <div class="text-center">
+                    {% for message in messages %}
+                        {% if 'course' in message.tags %}
+                            <span class="form-control font-weight-bold align-middle  alert alert-danger">{{message}}</span>
+                        {% endif %}
+                    {% endfor %}   
+                    
+                </div> 
+                <form action="{% url 'search' %}" method="get">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input placeholder="Search for courses" name="search" type="search" class="form-control p-4">
+                        <button class="btn btn-success text-white" style="margin-top: 10px; "><i class="bi bi-search"></i> Search</button>
+                    </div>
+                </form>
+                
+                    <div  class="row">
+                        {% for search_data in search_data %}
+                            
+                                <div class="card col-lg-4 col-sm-12">
+                                    <div class="card-body ">
+                                        <img src="{{search_data.image.url}}" class="img-fluid" height="300px" width="300px" style="border-radius: 20px;" >
+                                        <div>
+                                            <h3 style="margin-top: 20px;">{{search_data.title}}</h3>
+                                            <p style="color: rgb(83, 83, 83);">{{search_data.duration}}</p>
+                                            <p style="color: rgb(83, 83, 83);">Fee : <i class="bi bi-currency-rupee"></i>{{search_data.fee}}</p>
+                                          
+                                          <form method="POST" action="{% url 'signedup' %}">
+                                          {% csrf_token %}
+                                            <input type="text" hidden name="course_id" value="{{search_data.id}}">
+                                            <input type="text" hidden name="user_id" value="{{savatar.id}}">
+                                            <button  class="btn btn-success text-white"><i class="bi bi-bookmark"></i> Sign up</button>
+                                          </form> 
+                                        
+                                      
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                    
+                        {% endfor %}
+                    </div>
+              
+    </div>
+{% endblock %}
+ 

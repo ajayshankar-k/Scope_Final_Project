@@ -1,0 +1,73 @@
+{% extends 'dashboard_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav" style="background-color: rgb(4, 99, 215);">
+            <div class="quixnav-scroll" style="color: white;">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Student Dashboard</li>
+                    <li  class="side_nav"><a href="{% url 'dashboard' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-book"></i><span style="color: white;" class="nav-text">Available Courses</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'course_signup' %}"    style="background-color: rgb(4, 99, 215);"  aria-expanded="false"><i style="color: white;"
+                                class="bi bi-bookmark-check"></i><span style="color: white;" class="nav-text">Courses Signed Up</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'profile' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-person"></i><span style="color: white;" class="nav-text">Profile</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'signout' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                        class="icon-key"></i><span style="color: white;" class="nav-text">Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <a href="{% url 'dashboard' %}"><i class="bi bi-arrow-left" style="font-size: 30px;"></i></a>
+                <form action="{% url 'search' %}" method="get">
+                    {% csrf_token %}
+                    <div class="form-group"> 
+                        <input placeholder="Search" name="search" type="search" class="form-control p-4">
+                        <button class="btn btn-success text-white" style="margin-top: 10px; "><i class="bi bi-search"></i> Search</button>
+                    </div>
+                </form>
+
+                <div  style="display: grid; grid-template-columns: repeat(3,1fr);gap: 10px;">
+                {% for search_data in search_data %}
+                    
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{search_data.image.url}}" class="img-fluid" height="300px" width="300px" style="border-radius: 20px;" >
+                                <div>
+                                    
+                                    <h3 style="margin-top: 20px;">{{search_data.title}}</h3>
+                                    <p style="color: rgb(83, 83, 83);">{{search_data.duration}}</p>
+                                    <p style="color: rgb(83, 83, 83);">Fee : <i class="bi bi-currency-rupee"></i>{{search_data.fee}}</p>
+                                <form method="POST" action="{% url 'signedup' %}">
+                                    {% csrf_token %}
+                                    <input type="text" hidden name="course_id" value="{{search_data.id}}">
+                                    <input type="text" hidden name="user_id" value="{{savatar.id}}">
+                                    <button class="btn btn-success text-white"><i class="bi bi-bookmark"></i> Sign up</button>
+                                </form>  
+                                </div>
+                            </div>
+                        </div>
+                
+               
+                {% endfor %}
+                </div>
+            </div>
+    </div>
+{% endblock %}

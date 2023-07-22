@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5 img-fluid">
+       <div>
+            <a href="{% url 'index' %}"><img src="{% static 'img/favicon.png' %}" style="height: 50px;width:50px;" class="img-fluid"></a>
+       </div> 
+        <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav mx-auto py-0">
+                <a href="{% url 'index' %}" class="nav-item nav-link">Home</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link active">Contact</a>
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link">Dashboard</a>
+                
+                
+            </div>
+            {% if  user.is_authenticated %}
+            <a href="{% url 'signout' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Log out</a>
+            {% else %}
+            <a href="{% url 'signin' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Log In</a>
+            <a href="{% url 'register' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-1">Contact</h1>
+        <div class="d-inline-flex text-white mb-5">
+            <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Home</a></p>
+            <i class="fa fa-angle-double-right pt-1 px-3"></i>
+            <p class="m-0 text-uppercase">Contact</p>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center bg-image">
+    <div class="col-lg-6 py-5">
+        <div class="bg-white p-5 my-5">
+            <h1 class="text-center mb-4">CONTACT DETAILS</h1>
+            <div class="text-center">
+                {% for message in messages %}
+                    {% if 'contact' in message.tags %}
+                        <span class="form-control font-weight-bold align-middle  alert alert-success">{{message}}</span>
+                    {% endif %}
+                {% endfor %}   
+                
+            </div> 
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" required name="name" class="form-control bg-light border-0" placeholder="Your Name" style="padding: 30px 20px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="email" required name="email" class="form-control bg-light border-0" placeholder="Your Email" style="padding: 30px 20px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input type="text" required name="subject" class="form-control bg-light border-0" placeholder="Subject" style="padding: 30px 20px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <textarea type="text" required name="Message" rows="5" class="form-control bg-light border-0" placeholder="Message" style="padding: 30px 20px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" type="submit" style="height: 60px;">SEND MAIL</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

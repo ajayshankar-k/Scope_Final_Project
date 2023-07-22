@@ -1,0 +1,108 @@
+{% extends 'dashboard_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav" style="background-color: rgb(4, 99, 215);">
+            <div class="quixnav-scroll" style="color: white;">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Student Dashboard</li>
+                    <li  class="side_nav"><a href="{% url 'dashboard' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-book"></i><span style="color: white;" class="nav-text">Available Courses</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'course_signup' %}"    style="background-color: rgb(4, 99, 215);"  aria-expanded="false"><i style="color: white;"
+                                class="bi bi-bookmark-check"></i><span style="color: white;" class="nav-text">Courses Signed Up</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'profile' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-search"></i><span style="color: white;" class="nav-text">Profile</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'signout' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                        class="icon-key"></i><span style="color: white;" class="nav-text">Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="authincation h-100">
+                    <div class="container-fluid h-100">
+                        <div class="row justify-content-center h-100 align-items-center">
+                            <div class="col-md-6">
+                                <div class="authincation-content">
+                                    <div class="row no-gutters">
+                                        <div class="col-xl-12">
+                                            <div class="auth-form">
+                                                <form action="" method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <h2 class="text-center">Edit profile</h2>
+                                                    <div class="form-group" style="width: 100px;height: 100px;overflow: hidden;border-radius: 50%;border: 5px rgba(0, 179, 255, 0.658) solid;">
+                                                       
+                                                            <img src="{{savatar.avatar.url}}" style="width: 100%;height: auto;object-fit: cover;" alt="">
+                                                        
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <input name="edit_avatar" type="file" class="form-control" >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><strong>First name</strong></label>
+                                                        <input value="{{savatar.fname}}" name="edit_fname"  type="text" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><strong>Last name</strong></label>
+                                                        <input value="{{savatar.lname}}" name="edit_lname" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label><strong>Gender</strong></label>
+                                                        <select class="form-control" name="edit_gender">
+                                                            <option value="{{savatar.gender}}">{{savatar.gender}}</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><strong>Phone</strong></label>
+                                                        <input name="edit_phone" value="{{savatar.phone}}" type="tel" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><strong>Country</strong></label>
+                                                        <input name="edit_country" value="{{savatar.country}}" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><strong>State</strong></label>
+                                                        <input name="edit_state" value="{{savatar.state}}" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><strong>City</strong></label>
+                                                        <input name="edit_city" value="{{savatar.city}}" type="text" class="form-control">
+                                                    </div>
+                                                    <div >
+                                                        <button class="btn btn-success text-white"><i class="bi bi-pencil"></i> Save</button>
+                                                        <a  href="{% url 'profile' %}"><button type="button" class="btn btn-danger"> Cancel </button></a>
+                                                    </div>
+                                            
+                                                </form>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    </div>
+{% endblock %}

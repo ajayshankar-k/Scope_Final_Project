@@ -1,0 +1,81 @@
+{% extends 'dashboard_layout.html' %}
+{% load static %}
+
+{% block content %}
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav" style="background-color: rgb(4, 99, 215);">
+            <div class="quixnav-scroll" style="color: white;">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Student Dashboard</li>
+                    <li  class="side_nav"><a href="{% url 'dashboard' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-book"></i><span style="color: white;" class="nav-text">Available Courses</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'course_signup' %}"    style="background-color: rgb(4, 99, 215);"  aria-expanded="false"><i style="color: white;"
+                                class="bi bi-bookmark-check"></i><span style="color: white;" class="nav-text">Courses Signed Up</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'profile' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-person"></i><span style="color: white;" class="nav-text">Profile</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'signout' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                        class="icon-key"></i><span style="color: white;" class="nav-text">Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="authincation h-100">
+                    <div class="container-fluid h-100">
+                        <div class="row justify-content-center h-100 align-items-center">
+                            <div class="col-md-6">
+                                <div class="authincation-content">
+                                    <div class="row no-gutters">
+                                        <div class="col-xl-12">
+                                            <div class="auth-form">
+                                                <form action="" method="POST">
+                                                    
+                                                    {% csrf_token %}
+                                                    <div class="text-center">
+                                                        {% for message in messages %}
+                                                                <span class="form-control font-weight-bold align-middle  alert alert-danger">{{message}}</span>
+                                                        {% endfor %}   
+                                                    </div> 
+                                                    <div class="form-group">
+                                                       
+                                                        <input name="pass_email" placeholder="Enter your email"  type="email" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                       
+                                                        <input name="new_pass" placeholder="Enter your new password"  type="text" class="form-control">
+                                                    </div>
+                            
+                                                    <div class="form-group">
+                                                        
+                                                   
+                                                    
+                                                        <button class="btn btn-success text-white">Save</button>
+                                                        <a href="{% url 'profile' %}"><button type="button" class="btn btn-danger text-white">Cancel</button></a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    </div>
+{% endblock %}

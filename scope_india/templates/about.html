@@ -1,0 +1,56 @@
+
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5 img-fluid">
+       <div>
+            <a href="{% url 'index' %}"><img src="{% static 'img/favicon.png' %}" style="height: 50px;width:50px;" class="img-fluid"></a>
+       </div> 
+        <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav mx-auto py-0">
+                <a href="{% url 'index' %}" class="nav-item nav-link">Home</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link active">About</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                <a href="{% url 'dashboard' %}" class="nav-item nav-link">Dashboard</a>
+                
+                
+            </div>
+            {% if  user.is_authenticated %}
+            <a href="{% url 'signout' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Log out</a>
+            {% else %}
+            <a href="{% url 'signin' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Log In</a>
+            <a href="{% url 'register' %}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+    <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-1">About</h1>
+            <div class="d-inline-flex text-white mb-5">
+                <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">About</p>
+            </div>
+        </div>
+    </div>
+    <!-- about Start -->
+    <div class="container-fluid bg-image py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg mb-5 mb-lg-0">
+                    <div class="section-title position-relative mb-4">
+                        <h3 class="text-center position-relative text-primary text-uppercase pb-2">SCOPE INDIA, your career partner!</h3>
+                        <h5 class="text-center">One of the best Training Destination for Software, Networking and Cloud Computing courses in India</h5>
+                    </div>
+                    <p class="m-0 text-center">Software, Networking, and Cloud Professional Education Centre in Kerala from Suffix E Solutions with WORKING PROFESSIONALS oriented on-the-job TRAINING model. SCOPE INDIA provides courses for Software Programming in Python (Data Science | Artificial Intelligence | Machine Learning | Deep Learning), Java, PHP, .Net, Software Testing Manual and Automation, Cloud in AWS, Azure, Server Administration in MCSE, and RHCE, CCNA, Mobile App Development in Flutter, and, Digital Marketing. Training with 100% Trusted Job Based Internship Model. SCOPE INDIA has a Strong Placement Cell that provides jobs to 1000's of students every year. We assure you, you won't regret it after training from SCOPE INDIA!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about Start -->
+{% endblock %}
+ 

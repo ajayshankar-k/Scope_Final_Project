@@ -1,0 +1,66 @@
+{% extends 'dashboard_layout.html' %}
+{% load static %}
+
+{% block content %}
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav" style="background-color: rgb(4, 99, 215);">
+            <div class="quixnav-scroll" style="color: white;">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Student Dashboard</li>
+                    <li  class="side_nav"><a href="{% url 'dashboard' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-book"></i><span style="color: white;" class="nav-text">Available Courses</span></a>
+                    </li>
+                    <li class="side_nav active"><a href="{% url 'course_signup' %}"    style="background-color: rgb(4, 99, 215);"  aria-expanded="false"><i style="color: white;"
+                                class="bi bi-bookmark-check"></i><span style="color: white;" class="nav-text">Courses Signed Up</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'profile' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                                class="bi bi-person"></i><span style="color: white;" class="nav-text">profile</span></a>
+                    </li>
+                    <li class="side_nav"><a href="{% url 'signout' %}"   style="background-color: rgb(4, 99, 215);" aria-expanded="false"><i style="color: white;"
+                        class="icon-key"></i><span style="color: white;" class="nav-text">Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="text-center">
+                {% for message in messages %}
+                    {% if 'course_success' in message.tags %}
+                        <span class="form-control font-weight-bold align-middle  alert alert-success">{{message}}</span>
+                    {% endif %}
+                {% endfor %}   
+                
+            </div> 
+            <!-- row -->
+            <div class="container-fluid">
+                <div  class="row">
+                    {% for signedup in signedup %}
+                        
+                            <div class="card col-lg-4 col-sm-12">
+                                <div class="card-body ">
+                                    <img src="{{signedup.image.url}}" class="img-fluid" height="300px" width="300px" style="border-radius: 20px;" >
+                                    <div>
+                                        <h3 style="margin-top: 20px;">{{signedup.title}}</h3>
+                                        <p style="color: rgb(83, 83, 83);">{{signedup.duration}}</p>
+                                        <p style="color: rgb(83, 83, 83);">Fee : <i class="bi bi-currency-rupee"></i>{{signedup.fee}}</p>  
+                                    </div>
+                                </div>
+                            </div>
+                    
+                
+                    {% endfor %}
+                   
+                </div>
+            </div>
+        </div>   
+    </div>
+{% endblock %}
